@@ -7,10 +7,11 @@ def pascal_triangle(n):
         representing the Pascal’s triangle of n
     """
     triangle = []
-    # add the first row
-    triangle.append([1])
 
     if (n > 0):
+        # add the first row
+        triangle.append([1])
+
         for i in range(1, n):
             row = []
 
