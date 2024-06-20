@@ -55,7 +55,7 @@ try:
 
             # Print statistics every 10 lines
             if line_count == 10:
-                print_statistics(total_file_size, status_code_counts)
+                print_logs(total_file_size, status_code_counts)
 except KeyboardInterrupt:
     # Print logs on keyboard interruption
     print_logs(total_file_size, status_code_counts)
