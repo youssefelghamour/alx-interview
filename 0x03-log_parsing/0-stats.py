@@ -32,7 +32,6 @@ def print_logs(total_size, status_counts):
     for code in sorted(status_counts.keys()):
         if status_counts[code] > 0:
             print(f"{code}: {status_counts[code]}")
-    print()
 
 
 try:
