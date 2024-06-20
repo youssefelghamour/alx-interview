@@ -22,8 +22,18 @@ log_pattern = re.compile(
     r'- \[(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}\.\d{6})\] '  # Date & Time
     r'"GET /projects/260 HTTP/1\.1" '  # Request line
     r'(\d{3}) '  # Status code
-    r'(\d{1,4})$'  # File size)
+    r'(\d{1,4})$'  # File size
 )
+
+
+def print_logs(total_size, status_counts):
+    """ prints logs """
+    print(f"File size: {total_size}")
+    for code in sorted(status_counts.keys()):
+        if status_counts[code] > 0:
+            print(f"{code}: {status_counts[code]}")
+    print()
+
 
 try:
     for line in sys.stdin:
@@ -46,13 +56,7 @@ try:
 
             # Print statistics every 10 lines
             if line_count % 10 == 0:
-                print(f"File size: {total_file_size}")
-                for code in sorted(status_code_counts.keys()):
-                    if status_code_counts[code] > 0:
-                        print(f"{code}: {status_code_counts[code]}")
+                print_statistics(total_file_size, status_code_counts)
 except KeyboardInterrupt:
     # Print logs on keyboard interruption
-    print(f"File size: {total_file_size}")
-    for code in sorted(status_code_counts.keys()):
-        if status_code_counts[code] > 0:
-            print(f"{code}: {status_code_counts[code]}")
+    print_logs(total_file_size, status_code_counts)
