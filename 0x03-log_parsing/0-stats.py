@@ -31,11 +31,13 @@ try:
 
         if len(parsed_line) > 2:
             line_count += 1
-            total_file_size += int(parsed_line[0])
-            status_code = int(parsed_line[1])
 
-            if status_code in status_code_counts:
-                status_code_counts[status_code] += 1
+            if line_count <= 10:
+                total_file_size += int(parsed_line[0])
+                status_code = int(parsed_line[1])
+
+                if status_code in status_code_counts:
+                    status_code_counts[status_code] += 1
 
             if line_count == 10:
                 line_count = 0
