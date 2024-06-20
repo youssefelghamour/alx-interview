@@ -3,8 +3,8 @@
 import sys
 
 
-def print_statistics(status_counts, total_size):
-    """ prints current statilogsstics """
+def print_logs(status_counts, total_size):
+    """ prints current logs """
     print("File size: {}".format(total_size))
     for key, val in sorted(status_counts.items()):
         if val != 0:
