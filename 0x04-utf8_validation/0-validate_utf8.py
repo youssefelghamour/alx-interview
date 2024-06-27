@@ -5,6 +5,7 @@
 def validUTF8(data):
     """ validates UTF-8 encoding """
 
+    """
     # Step 1: turn data into binary
     bin_data = []
     for number in data:
@@ -48,3 +49,27 @@ def validUTF8(data):
             return False
 
     return True
+    """
+    # Initialize the number of expected continuation bytes
+    n_bytes = 0
+
+    for num in data:
+        if n_bytes == 0:
+            # Determine the number of bytes in the character
+            if num >> 5 == 0b110:
+                n_bytes = 1
+            elif num >> 4 == 0b1110:
+                n_bytes = 2
+            elif num >> 3 == 0b11110:
+                n_bytes = 3
+            elif num >> 7:
+                # If the first bit is 1, but it doesn't match any valid pattern
+                return False
+        else:
+            # Check continuation byte
+            if num >> 6 != 0b10:
+                return False
+            n_bytes -= 1
+
+    # If n_bytes is not 0, it means we were expecting more continuation bytes
+    return n_bytes == 0
