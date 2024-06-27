@@ -16,8 +16,7 @@ To determine if a dataset is a valid UTF-8 encoding:
 ### `validUTF8(data)`
 
 - **Input**: A list of integers, each representing 1 byte of data (8 least significant bits).
-- **Output**: `True` if `data` is a valid UTF-8 encoding, `False` otherwise.
-- **Returns**: Boolean indicating the validity of the UTF-8 encoding.
+- **Returns**: `True` if `data` is a valid UTF-8 encoding, `False` otherwise.
 
 ### Implementation Details
 
@@ -26,9 +25,9 @@ To determine if a dataset is a valid UTF-8 encoding:
 - **Validation Process**:
   1. **Single-byte Characters**: Check if the binary string starts with '0'.
   2. **Multi-byte Characters**: 
-     - Two-byte: Verify the sequence starts with '110' followed by '10'.
-     - Three-byte: Verify '1110' followed by two '10' sequences.
-     - Four-byte: Verify '11110' followed by three '10' sequences.
+     - Two-byte: Verify the sequence starts with '110' followed by one sequence that starts with '10'.
+     - Three-byte: Verify '1110' followed by two sequences starting with '10'.
+     - Four-byte: Verify '11110' followed by three sequences starting with '10'.
   
 - **Return Value**: Returns `True` if all binary representations in `data` conform to UTF-8 encoding rules; otherwise, returns `False`.
 
