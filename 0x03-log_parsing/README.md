@@ -78,7 +78,7 @@ Upon reading every 10 lines or upon interruption (CTRL + C), the script prints t
 
 Each log entry is expected to be in the following format:
 
-`**<IP Address> - [<date>] "GET /projects/260 HTTP/1.1" <status code> <file size>**`
+`<IP Address> - [<date>] "GET /projects/260 HTTP/1.1" <status code> <file size>`
 
 For example:
 
