@@ -6,20 +6,16 @@ def makeChange(coins, total):
     """ Determine the fewest number of coins
         needed to meet a given amount total
     """
-
+    if not coins:
+        return -1
     if total <= 0:
         return 0
-
-    # Initialize the DP array with a large number larger
-    # than any possible number of coins needed
-    max_val = total + 1
-    dp = [max_val] * (total + 1)
-    dp[0] = 0
-
-    # Fill the DP array
+    change = 0
+    coins = sorted(coins)[::-1]
     for coin in coins:
-        for amount in range(coin, total + 1):
-            dp[amount] = min(dp[amount], dp[amount - coin] + 1)
-
-    # Return -1 if dp[total] is still the initial large value
-    return dp[total] if dp[total] != max_val else -1
+        while coin <= total:
+            total -= coin
+            change += 1
+        if total == 0:
+            return change
+    return -1
