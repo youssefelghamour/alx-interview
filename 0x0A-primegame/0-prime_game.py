@@ -17,6 +17,11 @@ def count_primes(n):
 
 def isWinner(x, nums):
     """ returns the winner """
+    if x <= 0 or nums is None:
+        return None
+    if x != len(nums):
+        return None
+
     maria_wins = 0
     ben_wins = 0
 
@@ -31,5 +36,4 @@ def isWinner(x, nums):
         return 'Maria'
     elif ben_wins > maria_wins:
         return 'Ben'
-    else:
-        return None
+    return None
